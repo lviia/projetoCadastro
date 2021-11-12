@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="assets/fulllogo.png" type="image/x-icon">
+  <title>Fulltrack │ Cadastro de Eventos Personalizados</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/font-awesome.min.css">
+  <link rel="stylesheet" href="style/projeto.css">
+  <link rel="stylesheet" href="components/modal/modal.css">
+  <link rel="stylesheet" href="components/toast/toast.css">
+  <link rel="stylesheet" href="components/sidebar/sidebar.css">
+  <link rel="stylesheet" href="components/fontawesome-free-6.0.0-beta2-web/css/all.css">
+</head>
+
+<body>
+  <div class="menuSuperior">
+    <label for="check">
+      <i class="fas fa-bars" id="btn"></i>
+    </label>
+    <input type="checkbox" id="check">
+    <div class="sidebar">
+      <header>Menu</header>
+      <a href="#" class="active">
+        <span>Dashboard</span>
+      </a>
+      <a href="#">
+        <span>Mapa Geral</span>
+      </a>
+      <a href="#">
+        <span>Mapa Geral 2.0</span>
+      </a>
+    </div>
+  </div>
+  <main>
+    <div class="toastClass" id="toastIdEditar">
+      <div class="toast">
+        <p>As ações serão desabilitadas até o fim da edição</p>
+      </div>
+      <img src="assets/warning.svg" alt="Aviso" width="30" class="imageAvisoToast">
+    </div>
+
+    <div class="container">
+      <div class="conteudo">
+        <div class="caixa_titulo">
+          <h1 class="titulo">Cadastro de Eventos Personalizados</h1>
+        </div>
+        <div class="linha_central">
+          <div id="linha_horizontal"></div>
+        </div>
+        <div class="form_table">
+          <section class="formulario">
+            <form id="form">
+              <label for="desc" class="text_label">Descrição do Evento</label>
+              <input type="text" id="desc" class="text_input" placeholder="Insira a descrição do evento...">
+              <label for="evento" class="labels">Evento Principal</label>
+              <select id="evento" class="inputs" onchange="validaCampoEvento();">
+                <option selected disabled value="Nenhum selecionado">Nenhum selecionado</option>
+                <option value="Aceleração ao desligar">Aceleração ao desligar</option>
+                <option value="Aceleração brusca">Aceleração brusca</option>
+                <option value="Acelerômetro">Acelerômetro</option>
+                <option value="Acidente">Acidente</option>
+                <option value="Alarme do veículo">Alarme do veículo</option>
+              </select>
+              <label for="parametros" class="labels">Parâmetros</label>
+              <select id="parametros" class="inputs" onchange="validaCampoParametro();">
+                <option selected disabled value="Nenhum selecionado">Nenhum selecionado</option>
+                <option value="Velocidade">Velocidade</option>
+                <option value="Satélites">Satélites</option>
+                <option value="Entrada">Entrada</option>
+                <option value="Ignição">Ignição</option>
+                <option value="Saída">Saída</option>
+                <option value="Status Gps">Status Gps</option>
+              </select>
+              <label for="operador" class="labels">Operador aritmético</label>
+              <select id="operador" class="inputs" onchange="validaCampoOperador();">
+                <option selected disabled value="Nenhum selecionado">Nenhum selecionado</option>
+                <option value="Maior ou Igual">Maior ou Igual</option>
+                <option value="Menor ou Igual">Menor ou Igual</option>
+                <option value="Maior">Maior</option>
+                <option value="Menor">Menor</option>
+                <option value="Igual">Igual</option>
+              </select>
+              <label for="valor" class="labels">Valor de Referência</label>
+              <select id="valor" class="inputs" onchange="validaCampoReferencia();">
+                <option selected disabled value="Nenhum selecionado">Nenhum selecionado</option>
+                <option value="0">0</option>
+                <option value="10">10</option>
+                <option value="20">20</option>
+                <option value="30">30</option>
+                <option value="40">40</option>
+                <option value="50">50</option>
+                <option value="60">60</option>
+                <option value="70">70</option>
+                <option value="80">80</option>
+                <option value="90">90</option>
+                <option value="100">100</option>
+              </select>
+              <label for="marker" class="color_label">Marker personalizado</label>
+              <input id="marker" type="color" class="color_input">
+              <div class="caixa_botao">
+                <button id="cad" class="botao_cad">
+                  <img src="assets/plus-circle-outline.png" alt="Cadastrar" width="20">Cadastrar
+                </button>
+              </div>
+            </form>
+          </section>
+          <div class="tabela">
+            <table id="tab">
+              <thead>
+                <tr>
+                  <th colspan="4" id="titulo_tabela">Parâmetros Cadastrados</th>
+                  <th colspan="3" id="filtro"><input type="text" placeholder="Pesquisar..." id="input_filtro"></th>
+                </tr>
+                <tr>
+                  <th>Descrição do Evento</th>
+                  <th>Evento Principal</th>
+                  <th>Parâmetros</th>
+                  <th>Operador aritmético</th>
+                  <th>Valor de Referência</th>
+                  <th>Marker Personalizado</th>
+                  <th>Ações</th>
+                </tr>
+              </thead>
+              <tbody class="tbodyClass">
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+  </main>
+  <div id="modal-principal-erro" class="modal-container">
+    <div class="modal">
+      <img src="assets/empty-box 1.svg" alt="Ilustração de erro" width="300" id="imagemErro">
+      <p id="textoModalErro">Preencha todos os campos corretamente!</p>
+      <button class="botaoModalErro">Ok</button>
+    </div>
+
+    <script src="JS/projeto.js"></script>
+    <script src="JS/validacao.js"></script>
+    <script src="JS/modal.js"></script>
+    <script src="JS/filtra.js"></script>
+    <script src="JS/exclui.js"></script>
+    <script src="JS/editar.js"></script>
+    <script src="JS/toast.js"></script>
+</body>
+
+</html>
