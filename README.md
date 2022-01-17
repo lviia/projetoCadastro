@@ -1,1 +1,1 @@
-Subindo meu primeiro projeto para o Git.
+Projeto de Cadastro, responsivo, utilizando HTML, CSS, JavaScript e LocalStorage.
